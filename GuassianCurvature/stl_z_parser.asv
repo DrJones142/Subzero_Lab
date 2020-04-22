@@ -14,11 +14,9 @@ MV = FV;                        % Varible copies the FV file struct which
                                 % contains the faces and vertices (see
                                 % gaussianCurvature.m 
 
-step_size = 15;  % set number of steps 
-z_step = (z_max-z_min)/step_size; % Finds step size for 
-z_entire = (z_max-z_min)/1;   % Entire profile 
-z_bounds =  z_min + z_step.*(0:step_size); % Finds bounds for z_profile 
-
+step_size = 10;  % set number of steps 
+z_step = (z_max-z_min)/step_size; 
+z_bounds =  z_min + z_step.*(0:step_size);
 
 for i = 0:step_size-1 
     i
@@ -93,18 +91,15 @@ mc_final = mC(unique(MV.faces));
 % colorbar();
 
 
-%% histogram for gc_final and hc_final 
+%% histogram for gc_final
 
 colorcodes = ["#0072BD","#D95319","#EDB120","#7E2F8E","#77AC30","#4DBEEE","#A2142F"];
 if (i==0)
     figure();
     legend('-DynamicLegend');
-    title('Gaussian Curvature across Z Profile');
-    ylabel('Occurances');
-    xlabel('mm^-^2');
     hold on;
 end;
-h = histfit(gc_final)
+h = histfit(mc_final)
 str1 = num2str(z_bounds(i+1));
 str2 = num2str(z_bounds(i+2));
 str3 = append(str1,' to ',str2);
@@ -113,9 +108,9 @@ str3 = append(str1,' to ',str2);
         if i_temp == 0
             i_temp = 1;
         end
-        set(h(2),'color' ,colorcodes(i_temp),'DisplayName',str3);
+        set(h(2),'color' ,colorcodes(i_temp));
     else
-        set(h(2),'color', colorcodes(i+1),'DisplayName',str3);
+        set(h(2),'color', colorcodes(i+1));
     end;
 delete(h(1));
 

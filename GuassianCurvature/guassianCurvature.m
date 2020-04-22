@@ -49,36 +49,10 @@ getderivatives=0;
 %Multiplies the principal curvatures together to get the GausianCurvature
 GausianCurvature=PrincipalCurvatures(1,:).*PrincipalCurvatures(2,:);
 
+MeanCurvature=(PrincipalCurvatures(1,:)+PrincipalCurvatures(2,:))/2; % Mean curvature 
+
 %% 
 
-g = GausianCurvature;
 
-if (abs(min(GausianCurvature))<abs(max(GausianCurvature)))
-    t1 = abs(min(GausianCurvature));
-else
-    t1 = abs(max(GausianCurvature));
-end;
-
-cmp = linspace(-t1, t1, 100);
-rgb = zeros(100,3);
-for i = 1:50
-    rgb(i,:) = [1 i*.02 i*.02];
-end
-for i = 1:50
-    rgb(50+i,:) = [1-i*.02 1 1-i*.02];
-end
-
-
-
-figure('name','Triangle Mesh Curvature Example','numbertitle','off','color','w');
-% color overlay the gaussian curvature, currently limited to [-1 1] 
-%caxis([-t1 t1]);
-mesh_h=patch(FV,'FaceVertexCdata',GausianCurvature','facecolor','flat','edgecolor','none','EdgeAlpha',0);
-%set some visualization properties
-set(mesh_h,'ambientstrength',0.1);
-axis('image');
-view([-135 35]);
-camlight('headlight');
-material('dull');
-colorbar();
+MV = stl_z_parser(FV, GausianCurvature, MeanCurvature);  % Face-Vertex Structure and Gaussian Curvature 
 
