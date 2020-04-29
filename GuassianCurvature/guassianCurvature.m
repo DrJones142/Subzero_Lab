@@ -36,7 +36,7 @@ triangulationStruct = stlread(filename);
 % Creates new struct from triangulation of faces and vertices 
 FV.faces = triangulationStruct.ConnectivityList;
 FV.vertices = triangulationStruct.Points;
-
+%% 
 
 % This variable will indicating wether or not to calcualte curvature derivatives
 % RECOMMENDED TO KEEP AT 0, otherwise it will take a LONG time 
@@ -62,9 +62,10 @@ MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, true, 3);  % Face-Vertex 
 %        - numOfSlices   (integer value) will return n+1 (first is full STL) 
 
 %% Display Mesh of Sliced STL File 
-
-fig = displayMesh(MV,1);  % input MV structure and what slice to view 
+coloraxis_gc = [-100 100];  % set range of color values 
+coloraxis_mc = [-25 25];
+[patchGC, patchMC] = displayMesh(MV,2, coloraxis_gc, coloraxis_mc);  % input MV structure and what slice to view 
 
 %% Display Histocurves 
 
-fig = histoCurves(MV)
+[gc, mc] = histoCurves(MV)

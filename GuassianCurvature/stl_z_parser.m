@@ -32,7 +32,7 @@ for i = 0:step_size
              FV.vertices(:,3)>z_bounds(1) & FV.vertices(:,3) < z_bounds(length(z_bounds)));
        str1 = num2str(z_min);
        str2 = num2str(z_max);
-       str3 = append('Full Profile : ',str1,' to ',str2);
+       str3 = strcat('Full Profile : ',str1,' to ',str2);
       MV(i+1).label = str3; 
       MV(i+1).vertices   = FV.vertices;
       MV(i+1).gaussianCurvature         = gC;
@@ -49,7 +49,7 @@ for i = 0:step_size
         end
        str1 = num2str(z_bounds(i));
        str2 = num2str(z_bounds(i+1));
-       str3 = append(str1,' to ',str2);
+       str3 = strcat(str1,'  to  ',str2);
        MV(i+1).label = str3;
                       
                                 % Creates a logical vector that shows all
