@@ -36,7 +36,7 @@ triangulationStruct = stlread(filename);
 % Creates new struct from triangulation of faces and vertices 
 FV.faces = triangulationStruct.ConnectivityList;
 FV.vertices = triangulationStruct.Points;
-%% 
+
 
 % This variable will indicating wether or not to calcualte curvature derivatives
 % RECOMMENDED TO KEEP AT 0, otherwise it will take a LONG time 
@@ -54,7 +54,7 @@ MeanCurvature=(PrincipalCurvatures(1,:)+PrincipalCurvatures(2,:))/2; % Mean curv
 %% 
 
 
-MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, true, 3);  % Face-Vertex Structure and Gaussian Curvature
+MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, true, 20);  % Face-Vertex Structure and Gaussian Curvature
 % inputs - FV (file-vertex data)
 %        - GaussianCurvature calculation (above)
 %        - Meanurvature calculation  (above)
