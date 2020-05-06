@@ -54,7 +54,7 @@ MeanCurvature=(PrincipalCurvatures(1,:)+PrincipalCurvatures(2,:))/2; % Mean curv
 %% 
 
 
-MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, true, 20);  % Face-Vertex Structure and Gaussian Curvature
+MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, false, 4);  % Face-Vertex Structure and Gaussian Curvature
 % inputs - FV (file-vertex data)
 %        - GaussianCurvature calculation (above)
 %        - Meanurvature calculation  (above)
@@ -64,7 +64,7 @@ MV = stl_z_parser(FV, GausianCurvature, MeanCurvature, true, 20);  % Face-Vertex
 %% Display Mesh of Sliced STL File 
 coloraxis_gc = [-100 100];  % set range of color values 
 coloraxis_mc = [-25 25];
-[patchGC, patchMC] = displayMesh(MV,2, coloraxis_gc, coloraxis_mc);  % input MV structure and what slice to view 
+[patchGC, patchMC] = displayMesh(MV,1, coloraxis_gc, coloraxis_mc);  % input MV structure and what slice to view 
 
 %% Display Histocurves 
 
